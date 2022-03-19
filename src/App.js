@@ -6,7 +6,7 @@ function App() {
   const [coordinates, setCoordinates] = useState([52.5065133, 13.1445545]);
   const [ipLoading, setIpLoading] = useState(true);
   const [loading, setLoading] = useState(true);
-  const [countryCode, setCountryCode] = useState("de"); // should be initially empty
+  const [countryCode, setCountryCode] = useState("");
   const [countryData, setCountryData] = useState([]);
 
   useEffect(() => {
@@ -18,13 +18,9 @@ function App() {
 
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
           setIp(data.ip);
           setCoordinates([data.location.lat, data.location.lng]);
-          console.log(coordinates);
-          console.log([data.location.lat, data.location.lng]);
           setCountryCode(data.location.country.toLowerCase());
-          console.log(data.location.country.toLowerCase());
           setIpLoading(false);
         } else {
           console.error("Fetch error!");
@@ -46,10 +42,7 @@ function App() {
 
         if (response.ok) {
           const data = await response.json();
-          console.log(`Data from fetchCountryData`, data[0]);
           setCountryData(data[0]);
-          console.log(`CountryCode inside of fetchCountryData ${countryCode}`);
-
           setLoading(false);
         } else {
           console.error("Fetch error!");
@@ -69,14 +62,14 @@ function App() {
       <ul class="list-group">
         <>
           {ipLoading ? (
-            <p>loading ..</p>
+            <li class="list-group-item">loading ...</li>
           ) : (
             <li class="list-group-item">Your IP is: {ip}</li>
           )}
         </>
         <>
           {loading ? (
-            <p>loading ..</p>
+            <li class="list-group-item">loading ...</li>
           ) : (
             <ul class="list-group">
               <li class="list-group-item">Flag: {countryData.flag}</li>
