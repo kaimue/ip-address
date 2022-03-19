@@ -6,7 +6,7 @@ function App() {
   const [coordinates, setCoordinates] = useState([52.5065133, 13.1445545]);
   const [ipLoading, setIpLoading] = useState(true);
   const [loading, setLoading] = useState(true);
-  const [countryCode, setCountryCode] = useState(""); // should be initially empty
+  const [countryCode, setCountryCode] = useState("de"); // should be initially empty
   const [countryData, setCountryData] = useState([]);
 
   useEffect(() => {
